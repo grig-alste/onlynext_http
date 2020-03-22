@@ -2,7 +2,7 @@
 
 Get the latest version of this repository running the command:
 
-git clone https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud
+git clone https://github.com/grig-alste/onlynext_http
 
 cd docker-onlyoffice-nextcloud
 
