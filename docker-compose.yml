@@ -1,0 +1,42 @@
+version: '3'
+services:
+  app:
+    container_name: app-server
+    image: nextcloud:fpm
+    stdin_open: true
+    tty: true
+    restart: always
+    expose:
+      - '80'
+      - '9000'
+    volumes:
+      - /app/onlynext/html:/var/www/html
+  onlyoffice-document-server:
+    container_name: onlyoffice-document-server
+    image: onlyoffice/4testing-documentserver-ie
+    stdin_open: true
+    tty: true
+    restart: always
+    expose:
+      - '80'
+      - '443'
+    volumes:
+      - /app/onlynext/Data:/var/www/onlyoffice/Data
+      - /app/onlynext/log:/var/log/onlyoffice
+  nginx:
+    container_name: nginx-server
+    image: nginx
+    stdin_open: true
+    tty: true
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /app/onlynext/html:/var/www/html
+volumes:
+  document_data:
+  document_log:
+  app_data:
+  mysql_data:
